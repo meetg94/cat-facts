@@ -11,39 +11,37 @@ import './FactCard.css'
 
 export default function MediaCard() {
 
-    const [dog, setDog] = useState([])
+    const [dogs, setDogs] = useState([])
+
+
+    let num = 1
 
     useEffect(() => {
-        axios.get('https://dog-facts-api.herokuapp.com/api/v1/resources/dogs?number=1', {
-            headers: {
-            }
-        })
-            .then(res => {
-                console.log(res.data)
-            })
+        axios.get(`/api/v1/resources/dogs?number=1`)
+            .then((result) => console.log(result.data))
 }, [])
 
   return (
-    <Card sx={{ maxWidth: 345 }} className="Card">
-      <CardMedia
-        component="img"
-        height="140"
-        image="/static/images/cards/contemplative-reptile.jpg"
-        alt="green iguana"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Lizard
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions>
-    </Card>
+    <div>
+      return (
+          <Card sx={{ maxWidth: 345 }} className="Card">
+          <CardMedia
+          component="img"
+          height="140"
+          alt="green iguana"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            Dog Fact: {dogs}
+          </Typography>
+          <Typography variant="body2" color="text.secondary"></Typography>
+        </CardContent>
+        <CardActions>
+          <Button size="small">Share</Button>
+          <Button size="small">Next Fact</Button>
+        </CardActions>
+      </Card>
+      )
+      </div>
   );
 }
