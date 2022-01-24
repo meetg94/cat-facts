@@ -1,3 +1,7 @@
 .Card {
-    margin: 150px auto;
+    margin: 100px auto;
   }
+
+.card-media {
+  height: 300px;
+}
