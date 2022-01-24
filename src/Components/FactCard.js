@@ -6,42 +6,61 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import axios from "axios"
+import axios from 'axios'
 import './FactCard.css'
 
 export default function MediaCard() {
 
-    const [dogs, setDogs] = useState([])
+    const [catPics, setcatPics] = useState([])
+    const [catFacts, setcatFacts] = useState([])
+    
+    function fetchData(){
+      const catPicsAPI = 'https://api.thecatapi.com/v1/images/search'
+      const catFactsAPI = 'https://catfact.ninja/fact'
 
+      
+    }
+
+    function handleClick() {
+      fetch(``)
+            .then((result) => result.json())
+            .then((data) => setcatPics(data))
+    }
 
     let num = 1
 
-    useEffect(() => {
-        axios.get(`/api/v1/resources/dogs?number=1`)
-            .then((result) => console.log(result.data))
-}, [])
+    useEffect(handleClick, [])
 
   return (
+    <>
     <div>
-      return (
-          <Card sx={{ maxWidth: 345 }} className="Card">
-          <CardMedia
-          component="img"
-          height="140"
-          alt="green iguana"
-        />
+      {catPics.map(catPic =>{
+        return (
+          <Card className="Card" sx={{ maxWidth: 345 }}>
+          <CardMedia className="card-media"
+            component="img"
+            alt="green iguana"
+            height="140"
+            image={catPic.url}
+          />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            Dog Fact: {dogs}
+            Cat Pics
           </Typography>
-          <Typography variant="body2" color="text.secondary"></Typography>
+          <Typography variant="body2" color="text.secondary">
+          Welcome to the Cat Pics universe. Enjoy pictures of cute catPics. Press Next Image for more
+          next image of catPics.
+          </Typography>
         </CardContent>
         <CardActions>
           <Button size="small">Share</Button>
-          <Button size="small">Next Fact</Button>
+          <Button size="small" onClick={handleClick}>Next Image</Button>
         </CardActions>
       </Card>
-      )
-      </div>
+        )
+      })}
+    </div>
+      
+      </>
   );
-}
+  }
